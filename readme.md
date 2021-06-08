@@ -1,6 +1,6 @@
 # Sistema de login em php
 Sistema de Login em php para a matéria de Criação de Sites
-## Credenciais Validas:
+## Credenciais Válidas:
 * João
     * Email: **joao@email.com**
     * Senha: **123456**

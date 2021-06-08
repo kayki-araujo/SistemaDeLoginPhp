@@ -10,18 +10,21 @@
 </head>
 <body>
     <?php
-        $userEmail = $_SESSION['email'] = $_POST['email'];
-        $userPassword = $_SESSION['password'] = md5($_POST['password']);
         $usersCredentials = fopen("usersCredentials.txt","r");
         $isUserCredentialsValid = false;
-        while(!feof($usersCredentials) && !$isUserCredentialsValid) {
-            $userCredentials = explode("|",trim(fgets($usersCredentials)));
-            if($userEmail == $userCredentials[0] && $userPassword == $userCredentials[1]) {
-                $isUserCredentialsValid=true;
+        if(isset($_POST['submit'])) {
+            $userEmail = $_SESSION['email'] = $_POST['email'];
+            $userPassword = $_SESSION['password'] = md5($_POST['password']);
+            while(!feof($usersCredentials) && !$isUserCredentialsValid) {
+                $userCredentials = explode("|",trim(fgets($usersCredentials)));
+                if($userEmail == $userCredentials[0] && $userPassword == $userCredentials[1]) {
+                    $isUserCredentialsValid=true;
+                }
             }
         }
         if(!isset($_POST['submit'])) {
             $formAttribute = "standart";
+            $formBtnLabel = "";
         } elseif($isUserCredentialsValid) {
             $formAttribute = "valid";
             $formBtnLabel = " Correto";
